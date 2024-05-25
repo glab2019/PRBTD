@@ -56,27 +56,13 @@ def traffic_loader(f, opt):
     # feature = np.reshape(feature_data.values, (opt.height, opt.width, 4))
     # print(f['data'].shape)
     if opt.nb_flow == 1:
-        # if opt.traffic == 'sms':
-            # data = f['data'][:, :, 0]
-            # # ljj_ver 模型36,37的部分
         data = f['data'][7*24:, :, 0]
-        data_p = f['data'][6*24:-1*24, :, 0]#前一天同一时刻
-        data_t = f['data'][:-7*24, :, 0]#前一周同一时刻
-            # # print('it is sms')
-        # elif opt.traffic == 'call':
-        #     data = f['data'][:, :, 1]
-        # elif opt.traffic == 'internet':
-        #     data = f['data'][:, :, 2]
-        # else:
-        #     raise IOError("Unknown traffic type")
+        data_p = f['data'][6*24:-1*24, :, 0]
+        data_t = f['data'][:-7*24, :, 0]
         result = data.reshape((-1, 1, opt.height, opt.width))
 
         if opt.crop:
-            # result = result[:, :, opt.rows[0]:opt.rows[1], opt.cols[0]:opt.cols[1]]
-            # # ljj_ver 模型36,37的部分
             result_o = data.reshape((-1, 1, opt.height, opt.width))
-            # # # print(result_o.shape)
-            # # 改数据集ver2
             result_p = data_p.reshape((-1, 1, opt.height, opt.width))
             result_t = data_t.reshape((-1, 1, opt.height, opt.width))
             result = np.concatenate((result_o, result_p, result_t), axis=1)
@@ -128,20 +114,8 @@ def read_data(path, opt):
     # index = to_datetime(index, format='%Y-%m-%d %H:%M')
 
     # cell_label = get_label_v2(data, feature_data, index, opt.cluster)
-    # 数据归一化。
     mmn = MinMaxNorm01()
     data_scaled = mmn.fit_transform(data)
-    # '''TEST'''
-    # count = 0
-    # count2 = 0
-    # for date in index:
-    #     count += 1
-    #
-    # for data_temp in data_scaled:
-    #     count2 += 1
-    # print('index:', count)
-    # print('data:', count2)
-    # '''TEST OVER'''
     X, y = [], []
     X_meta = []
     '''TEST DATE'''
@@ -153,16 +127,9 @@ def read_data(path, opt):
     '''TEST LONG-TERM PREDICTION'''
     for i in range(opt.close_size, len(data)):
         '''TEST OVER'''
-    # for i in range(opt.close_size, len(data)):  #0105
-    #     xc_ = [data_scaled[i - c][:,:,:] for c in range(1, opt.close_size + 1)]
-        # ljj_ver 模型37的部分
-        xc_ = [[data_scaled[i - c][0,:,:]] for c in range(1, opt.close_size + 1)] # 当天的前opt.close_size个时刻
-        xc_.append([data_scaled[i][1,:,:]]) # 昨天同一时刻
-        xc_.append([data_scaled[i][2,:,:]]) # 上一周同一时刻
-        # xc_.append([data_scaled[i][1,:,:]]) # 上一周同一时刻ver2
-        # print(xc_[0])
-        # a, b, c, d = get_date_feature(index[i])
-        # X_meta.append((a, b, c, d))
+        xc_ = [[data_scaled[i - c][0,:,:]] for c in range(1, opt.close_size + 1)]
+        xc_.append([data_scaled[i][1,:,:]])
+        xc_.append([data_scaled[i][2,:,:]])
 
         if opt.close_size > 0:
             X.append(xc_)
@@ -172,8 +139,6 @@ def read_data(path, opt):
         # yc_ = [data_scaled[i + c][:,:,:] for c in range(0, opt.predict_size)]
         # y.append(yc_)
         '''TEST OVER'''
-        # y.append(data_scaled[i][:, :, :])
-        # ljj_ver 模型36,37的部分
         y.append(data_scaled[i][0, :, :])
         '''TEST DATE'''
         # y_date.append(index[i])

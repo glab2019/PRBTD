@@ -153,7 +153,7 @@ def train_epoch(data_type='train'):
 
 
 def train():
-    os.system("mkdir -p " + path_name)  # 创建一个文件夹
+    os.system("mkdir -p " + path_name)
     best_valid_loss = 10
     train_loss, valid_loss = [], []
     for i in range(opt.epoch_size):
