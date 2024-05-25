@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-## 超参数
+# hyperparameters
 alpha = 0.018
 beta = 0.06
 gamma = 0.5
@@ -14,7 +14,7 @@ EPS = 0.01
 rou = 0.002
 
 
-# 更新r的函数，见附录
+# reputation update function
 def updataR(R, q):
     if q >= gamma:
         k1 = alpha
@@ -25,7 +25,7 @@ def updataR(R, q):
     return 0.5 + (k1 * (q - gamma) * k2 + (1 - k1) * (2 * R - 1)) * 0.5
 
 
-# 计算区域平均误差的函数
+# function for calculating the environmental error
 def getError(buffer):
     edict = {}
     # print(edict)
@@ -41,8 +41,6 @@ def getError(buffer):
                 edict[area][0] += (data[2] - data[3]) / data[3]
             edict[area][1] += 1
             edict[area][0] /= edict[area][1]
-    # for key in edict.keys():
-    #     edict[key][0] /= edict[key][1]
     return edict
 
 
