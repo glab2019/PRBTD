@@ -24,6 +24,8 @@ python add_noise.py
 ```
 the output are 'data.csv' and 'noise.scv' in 'Result/origin/#/#/simulate_data' where '#' is the directory named by the specifical setting
 
+The other .py files in 'CreateNoise' are to simulate the cases metioned in our paper, run them if necessary.
+
 4. Run the method file in 'Method'
 ```
 python PRBTD.py
