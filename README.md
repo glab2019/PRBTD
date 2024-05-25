@@ -16,13 +16,13 @@ The setting of the following .py files are written in the corresponding codes, p
 ```
 python train.py
 ```
-the model file and the prediction results are in 'Predict/scripts/model/bj_taxi_result'
+The model file and the prediction results are in 'Predict/scripts/model/bj_taxi_result'.
   
 3. Get to 'CreateNoise' for adding noise in the dataset
 ``` 
 python add_noise.py
 ```
-the output are 'data.csv' and 'noise.scv' in 'Result/origin/#/#/simulate_data' where '#' is the directory named by the specifical setting
+The output are 'data.csv' and 'noise.scv' in 'Result/origin/#/#/simulate_data' where '#' is the directory named by the specifical setting.
 
 The other .py files in 'CreateNoise' are to simulate the cases metioned in our paper, run them if necessary.
 
@@ -30,7 +30,7 @@ The other .py files in 'CreateNoise' are to simulate the cases metioned in our p
 ```
 python PRBTD.py
 ```
-or other .py for baseline methods, the results are write in 'Result/origin/#/#/result.csv'
+or other .py for PRBTD or baseline methods, the results are written in 'Result/origin/#/#/result.csv'.
 
 ## Note
 This paper is under reviewed. The copyright of the code is not disclosed.
