@@ -8,7 +8,7 @@ Pytorch version: 1.1.0
 ## Execution
 
 Addition:
-The setting of the following .py file are written in the corresponding .py file, please review and modify as necessary before running them.
+The setting of the following .py files are written in the corresponding codes, please review and modify as necessary before running them.
 
 1. Download and place the .h5 file of TaxiBJ in 'Predict/data'
    
