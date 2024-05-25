@@ -10,7 +10,7 @@ Pytorch version: 1.1.0
 Addition:
 The setting of the following .py files are written in the corresponding codes, please review and modify as necessary before running them.
 
-1. Download and place the .h5 file of TaxiBJ in 'Predict/data'
+1. Download and place the .h5 file of TaxiBJ in 'Predict/data'.
    
 2. Get to 'Predict/scripts/model' for training a prediction model
 ```
