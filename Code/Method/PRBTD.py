@@ -118,10 +118,6 @@ def PRBTD(path, rep):
         for i, data in enumerate(csv.reader(f)):
             if i == 0:
                 continue
-            # if not list.setdefault(int(data[0]), []):
-            #     # data = [用户id，时间，地点，真实值，测量值，预测值，噪声]
-            #     # rep[int(data[0])] = 0.5  # 名誉值初始值设为0.5
-            #     q[int(data[0])] = 0.5  # 数据质量初始化为0.5
             totalT = max(totalT, int(data[1]))
             list.setdefault(int(data[0]), [])
             list[int(data[0])].append([int(data[1]), int(data[2]), float(data[4]), float(data[5]), float(data[3])])
