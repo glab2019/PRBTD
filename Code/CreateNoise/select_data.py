@@ -21,10 +21,10 @@ df = pd.read_csv(
 gdata = []
 bdata = []
 label = [[
-    'PRBTD acc', 'PRBTD rep dis', 'PRBTD noise',
-    'TD acc', 'TD rep dis', 'TD noise',
-    'PB acc', 'PB rep dis', 'PB noise',
-    'DA acc', 'DA rep dis', 'DA noise',
+    'PRBTD F1', 'PRBTD rep dis', 'PRBTD noise',
+    'TD F1', 'TD rep dis', 'TD noise',
+    'CNB F1', 'CNB rep dis', 'CNB noise',
+    'WEI F1', 'WEI rep dis', 'WEI noise',
 ]]
 
 for index, row in df.iterrows():

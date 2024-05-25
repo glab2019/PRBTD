@@ -170,6 +170,9 @@ def PRBTD(path, rep):
         if slist[i][0] not in b_worker:
             # print(slist[i])
             wrong += 1
+    precision = (len(rep) - len(b_worker) - wrong) / (len(rep) - len(b_worker))
+    recall = (len(rep) - len(b_worker) - wrong) / (len(rep) - len(b_worker))
+    F1 = 2 * precision * recall / (precision + recall)
     bad = 0
     good = 0
     for key in rep.keys():
@@ -189,13 +192,13 @@ def PRBTD(path, rep):
     # print('identification acc:', acc)
     # print('avr of good - avr of bad:', distance)
     # print('remaing noise:', te / n_te)
-    return acc, distance, te / n_te
+    return F1, distance, te / n_te
 
 
 if __name__ == '__main__':
-    type = 'origin'
+    # type = 'origin'
     # type = 'accident'
-    # type = 'sparsity'
+    type = 'sparsity'
     miu = 0.3
     sigma = 0.1
     path = '../Result/' + type + '/miu=' + str(miu) + '_sigma=' + str(sigma)
@@ -209,8 +212,8 @@ if __name__ == '__main__':
         init_rep[key] = 0.5
     for ver in range(exp_start, exp_stop + 1):
         rpath = path + '/simulate_data/experiment' + str(ver) + '/'
-        acc, distance, ate = PRBTD(rpath, init_rep)
-        col1.append(acc)
+        f1, distance, ate = PRBTD(rpath, init_rep)
+        col1.append(f1)
         col2.append(distance)
         col3.append(ate)
     print(np.mean(col1))
@@ -218,7 +221,7 @@ if __name__ == '__main__':
     print(np.mean(col3))
     outpath = path + '/result.csv'
     result = pd.read_csv(outpath)
-    result['PRBTD acc'] = col1
+    result['PRBTD F1'] = col1
     result['PRBTD rep dis'] = col2
     result['PRBTD noise'] = col3
     result.to_csv(outpath, index=False, encoding='utf-8-sig')
