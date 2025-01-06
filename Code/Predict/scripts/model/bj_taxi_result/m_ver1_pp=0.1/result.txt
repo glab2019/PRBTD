@@ -1,0 +1,6 @@
+model m_ver1_pp=0.1
+13.041M total parameters
+RMSE:16.5767
+Final MAE:9.9903
+R^2 Score: 0.9770
+Variance Score: 0.9770
