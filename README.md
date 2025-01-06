@@ -22,7 +22,7 @@ The model file and the prediction results are in 'Predict/scripts/model/bj_taxi_
 ``` 
 python add_noise.py
 ```
-The output are 'data.csv' and 'noise.scv' in 'Result/origin/#/#/simulate_data' where '#' is the directory named by the specifical setting.
+The output are 'data.csv' and 'noise.scv' in 'Result/origin/#/simulate_data' where '#' is the directory named by the specifical setting.
 
 The other .py files in 'CreateNoise' are to simulate the cases metioned in our paper, run them if necessary.
 
@@ -31,6 +31,22 @@ The other .py files in 'CreateNoise' are to simulate the cases metioned in our p
 python PRBTD.py
 ```
 or other .py for PRBTD or baseline methods, the results are written in 'Result/origin/#/#/result.csv'.
+
+5*. Run the SOTA method DTI
+First, run
+```
+python mask_DTI.py
+```
+in the folder 'CreateNoise' for obtaining the sparse data matrix for BPMF, the output is in 'Result/origin/#/simulate_data/experiment#/BJ16_In_mask.h5', then run
+```
+python fill_bpmf.py
+```
+in the folder 'Method' for obtaining the prediction results of BPMF, the output is in 'Result/origin/#/simulate_data/experiment#/BJ16_In_BPMF.h5'.
+Finally, run
+```
+python DTI.py
+```
+in the folder 'Method' for obtaining the result.
 
 ## Note
 This paper is under reviewed. The copyright of the code is not disclosed.
